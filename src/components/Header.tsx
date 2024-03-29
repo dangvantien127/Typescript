@@ -22,6 +22,7 @@ export const Header = () => {
               <NavDropdown.Divider />
               <NavDropdown.Item href='#action/3.4'>Separated link</NavDropdown.Item>
             </NavDropdown>
+            <Nav.Link href='/admin'>Admin Page</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -1,22 +1,13 @@
 import instance from '@/apis'
 import { TProduct } from '@/interfaces/TProduct'
 import { useEffect, useState } from 'react'
-import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
+import { Link } from 'react-router-dom'
 
 const ProductList = () => {
   // ! Dump component va smart component
   const [products, setProducts] = useState<TProduct[]>([])
   useEffect(() => {
-    // Cach 1:
-    // fetch('http://localhost:3000/products')
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data)
-    //     setProducts(data)
-    //   })
-
-    // Cach 2:
     const getProducts = async () => {
       try {
         const { data } = await instance.get('/products')
@@ -29,7 +20,6 @@ const ProductList = () => {
     getProducts()
   }, [])
 
-  // ! DependencyList = Danh sách phụ thuộc
   return (
     <div>
       <h1>Product List</h1>
@@ -37,9 +27,13 @@ const ProductList = () => {
         <div className='product__list'>
           <div key={product.id}>
             <Card style={{ width: '18rem', height: '30rem' }}>
-              <Card.Img style={{ height: '10rem' }} variant='top' src={product.thumbnail} alt={product.title} />
+              <Link to={`/shop/${product.id}`}>
+                <Card.Img style={{ height: '10rem' }} variant='top' src={product.thumbnail} alt={product.title} />
+              </Link>
               <Card.Body>
-                <Card.Title>{product.title}</Card.Title>
+                <Link to={`/shop/${product.id}`}>
+                  <Card.Title>{product.title}</Card.Title>
+                </Link>
                 <Card.Text>{product.description} </Card.Text>
                 <Card.Text>{product.price} </Card.Text>
               </Card.Body>

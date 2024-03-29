@@ -1,9 +1,12 @@
 import Banner from '@/components/Banner'
 
 import ProductList from '@/components/ProductList'
+import { TProduct } from '@/interfaces/TProduct'
 
-type Props = {}
-const Home = (props: Props) => {
+type Props = {
+  products: TProduct[]
+}
+const Home = ({ products }: Props) => {
   return (
     <div>
       <Banner />
